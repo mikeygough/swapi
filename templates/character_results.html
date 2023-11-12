@@ -1,15 +1,20 @@
 {% extends 'base.html' %} {% block content %}
 
-<section>
-  <h1>Character</h1>
+<h1>Character</h1>
 
+<ul>
+  <li>Name: {{ character['name'] }}</li>
+  <li>Height: {{ character['height'] }}</li>
+  <li>Mass: {{ character['mass'] }}</li>
+  <li>Hair Color: {{ character['hair_color'] }}</li>
+  <li>Eye Color: {{ character['eye_color'] }}</li>
+  <li>Homeworld: {{ homeworld }}</li>
+  <li>Films: </li>
   <ul>
-    <li>Name: {{ character['name'] }}</li>
-    <li>Height: {{ character['height'] }}</li>
-    <li>Mass: {{ character['mass'] }} </li>
-    <li>Hair Color: {{ character['hair_color'] }}</li>
-    <li>Eye Color: {{ character['eye_color'] }}</li>
+    {% for film in films %}
+      <li>{{ film }}</li>
+    {% endfor %}
   </ul>
+</ul>
 
-</section>
 {% endblock %}
