@@ -43,18 +43,19 @@ def get_homeworld(homeworld: str):
     result_json = requests.get(API_URL).json()
     return result_json
 
+
 def get_film_name(film: str):
     """Returns film name from the Star Wars API."""
     API_URL = film
     result_json = requests.get(API_URL).json()
-    return result_json['title']
+    return result_json["title"]
+
 
 @app.route("/")
 def home():
     """Displays homepage"""
-    context = {}
 
-    return render_template("home.html", **context)
+    return render_template("home.html")
 
 
 # --- ROUTES
@@ -75,10 +76,10 @@ def results():
 
     # get character homeworld
     homeworld = get_homeworld(character["homeworld"])
-    
+
     # get films
     films = list()
-    for film in character['films']:
+    for film in character["films"]:
         films.append(get_film_name(film))
 
     # populate context
