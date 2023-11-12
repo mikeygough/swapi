@@ -5,26 +5,30 @@ import requests
 app = Flask(__name__)
 API_URL = "https://swapi.py4e.com/api/"
 
+def format_character_results(func):
+    def wrapper(character_id):
+        try:
+            result_json = func(character_id)
+            formatted_results = {
+                "name": result_json['name'],
+                "height": result_json['height'],
+                "mass": result_json['mass'],
+                "hair_color": result_json['hair_color'],
+                "eye_color": result_json['eye_color']
+            }
+            return formatted_results
+        except KeyError:
+            # API response doesn't match the expected structure
+            error_message = f"Error: Character with ID {character_id} not found or API response structure is unexpected."
+            return {"error": error_message}
+    return wrapper
+
+@format_character_results
 def get_character(character_id: str):
-    """Returns json data for the character."""
-    
+    """Returns character data from the Star Wars API."""
     API_URL = "https://swapi.py4e.com/api/people/" + character_id
     result_json = requests.get(API_URL).json()
     return result_json
-
-def format_character_results(result_json):
-    """Returns formatted dictionary for character_results"""
-    
-    results = {
-        "name": result_json['name'],
-        "height": result_json['height'],
-        "mass": result_json['mass'],
-        "hair_color": result_json['hair_color'],
-        "eye_color": result_json['eye_color']
-    }
-    
-    print(results)
-    return results
 
 @app.route("/")
 def home():
@@ -39,13 +43,11 @@ def results():
 
     # get character ID
     character_id = str(request.args.get("character-id"))
-    
-    character_results = get_character(character_id)
-    formatted_character_results = format_character_results(character_results)
+    # get character data
+    character = get_character(character_id)
 
     context = {
-        "formatted_character_results": formatted_character_results,
+        "character": character,
     }
-    print(context)
 
     return render_template("character_results.html", **context)
