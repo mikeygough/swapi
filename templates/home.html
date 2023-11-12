@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="character-form">
+  <h2>Character</h2>
+
+  <form action="/character-results" method="GET">
+      <fieldset>
+          <legend>Please enter a character number:</legend>
+
+          <p>
+              <label>
+                  Please enter a number: <br>
+                  <input type="number" name="character-id">
+              </label>
+          </p>
+
+          <p>
+              <input type="submit" value="Submit">
+          </p>
+
+      </fieldset>
+  </form>
+</section>
+
+{% endblock content %}
