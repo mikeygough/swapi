@@ -1,8 +1,30 @@
 body {
-  background-color: #e6faff;
+  /* background-color: #e6faff; */
   display: flex;
   justify-content: center;
   font-family: "Roboto", sans-serif;
+  background-image: url('./swapi-background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+}
+
+a {
+  color: red;
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  width: 500px;
+}
+
+input {
+  padding: 5px;
 }
 
 #error-image-container {
