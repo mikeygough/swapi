@@ -4,3 +4,12 @@ body {
   justify-content: center;
   font-family: "Roboto", sans-serif;
 }
+
+#error-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+#error-image-container > img {
+  border-radius: 10px;
+}

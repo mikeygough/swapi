@@ -43,11 +43,20 @@ def results():
 
     # get character ID
     character_id = str(request.args.get("character-id"))
+    
     # get character data
     character = get_character(character_id)
+    
+    # check for errors in api response
+    if "error" in character:
+        context = {
+            "error": character,
+        }
+        return render_template("error_page.html", **context)
+    
+    else:
+        context = {
+            "character": character,
+        }
 
-    context = {
-        "character": character,
-    }
-
-    return render_template("character_results.html", **context)
+        return render_template("character_results.html", **context)
