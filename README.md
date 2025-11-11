@@ -10,6 +10,16 @@ Start the Flask Server:
 Run the Flask Server in Debug Mode:
 ```flask --app app.py --debug run```
 
+#### Docker
+Create the container with: 
+`docker build -t swapi-app .`
+
+Run the container with:
+`docker run -p 5001:5000 swapi-app`
+
+Then access the app at:
+`http://localhost:5001/`
+
 #### Virtual Environments
 Create a Python3 Virtual Environment: 
 ```python3 -m venv env```
